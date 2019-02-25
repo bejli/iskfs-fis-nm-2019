@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<meta charset = "utf-8">
+<html>
+    <head>
+        <title>Moja spletna stran</title>
+    </head>
+    <body>
+        <button id = "prizgi1" onClick="prizgi1()">Prižgi1</button> 
+        <button id = "ugasni1" onClick="ugasni1()">Ugasni1</button>
+        <button id = "prizgi2" onClick="prizgi2()">Prižgi2</button> 
+        <button id = "ugasni2" onClick="ugasni2()">Ugasni2</button>
+        <button id = "prizgi3" onClick="prizgi3()">Prižgi3</button> 
+        <button id = "ugasni3" onClick="ugasni3()">Ugasni3</button>
+        <button id = "prizgi4" onClick="prizgi4()">Prižgi4</button> 
+        <button id = "ugasni4" onClick="ugasni4()">Ugasni4</button>
+        
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            var socket1 = io.connect("192.168.1.133:8080");
+            var socket2 = io.connect("192.168.1.120:8080");
+            
+            function prizgi1() {
+                socket1.emit("ukazArduinu",1); 
+            }
+            
+            function ugasni1() {
+                socket1.emit("ukazArduinu",0); 
+            }
+            
+            function prizgi2() {
+                socket1.emit("ukazArduinu",3); 
+            }
+            
+            function ugasni2() {
+                socket1.emit("ukazArduinu",2); 
+            }
+            
+            function prizgi3() {
+                socket2.emit("ukazArduinu",1); 
+            }
+            
+            function ugasni3() {
+                socket2.emit("ukazArduinu",0); 
+            }
+            function prizgi4() {
+                socket2.emit("ukazArduinu",3); 
+            }
+            
+            function ugasni4() {
+                socket2.emit("ukazArduinu",2); 
+            }
+        </script>
+    </body>
+</html>
