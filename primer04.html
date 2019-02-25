@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset = "utf-8">
+<html>
+    <head>
+        <title>Moja spletna stran</title>
+    </head>
+    <body>
+        <button id = "buttonOn" onClick="on()">Prižgi</button> 
+        <button id = "buttonOff" onClick="off()">Ugasni</button>
+        
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            var socket = io.connect("192.168.1.133:8080");
+            
+            function on() {
+                socket.emit("ukazArduinu",1); 
+            }
+            
+            function off() {
+                socket.emit("ukazArduinu",0); 
+            }
+        </script>
+    </body>
+</html>
