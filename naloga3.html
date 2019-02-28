@@ -1,39 +1,28 @@
 <!DOCTYPE html>
 <meta charset = "utf-8">
 <html>
-    <style>
-        .green {
-            background-color: green;
-            height: 100px;
-            color: green;
-        }
-        .white {
-            background-color: white;
-            height: 100px;
-            color: white;
-        }
-        .blank {
-            color: white;
-        }
-    </style>
     <head>
         <title>Moja spletna stran</title>
     </head>
     <body>
-        <div id="gumb" class="blank">DIV</div>
+        <canvas id="mojePlatno" width="1200" height="600" style="border: 1px solid #d3d3d3;"></canvas>
         
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
         <script type="text/javascript">
             var socket = io.connect("192.168.1.133:8080");
+            var canvas = document.getElementById("mojePlatno")
+            var ctx = canvas.getContext("2d")
+            ctx.fillStyle = "green"
+            ctx.fillRect(0,0,1200,600)
             
             socket.on("sporočiloKlientu", function (value){
                 if (value == 0) {
-                    console.log(value);
-                    document.getElementById("gumb").className = "white";
+                    ctx.fillStyle = "green"
+                    ctx.fillRect(0,0,1200,600)
                 }
                 if (value == 1) {
-                    console.log(value);
-                    document.getElementById("gumb").className = "green";
+                    ctx.fillStyle = "red"
+                    ctx.fillRect(0,0,1200,600)
                 }
             });
         </script>
