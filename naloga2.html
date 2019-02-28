@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<meta charset = "utf-8">
+<html>
+    <style>
+        .green {
+            background-color: green;
+            border: none;
+            color: white;
+            width:100%;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .red {
+            background-color: red;
+            border: none;
+            color: white;
+            width:100%;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .blue {
+            background-color: blue;
+            border: none;
+            color: white;
+            width:100%;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .orange {
+            background-color: orange;
+            border: none;
+            color: white;
+            width:100%;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .all {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            width:100%;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+    <head>
+        <title>Moja spletna stran</title>
+    </head>
+    <body>
+        <button id = "prizgiZ" class="green" onClick="prizgiZ()">Prižgi Zeleno</button> 
+        <button id = "ugasniZ" class="green" onClick="ugasniZ()">Ugasni Zeleno</button><br>
+        <button id = "prizgiR" class="red" onClick="prizgiR()">Prižgi Rdečo</button> 
+        <button id = "ugasniR" class="red" onClick="ugasniR()">Ugasni Rdečo</button><br>
+        <button id = "prizgiM" class="blue" onClick="prizgiM()">Prižgi Modro</button> 
+        <button id = "ugasniM" class="blue" onClick="ugasniM()">Ugasni Modro</button><br>
+        <button id = "prizgiO" class="orange" onClick="prizgiO()">Prižgi Oranžno</button> 
+        <button id = "ugasniO" class="orange" onClick="ugasniO()">Ugasni Oranžno</button>
+        <button id = "prizgiVse" class="all" onClick="prizgiVse()">Prižgi Vse</button>
+        <button id = "ugasniVse" class="all" onClick="ugasniVse()">Ugasni Vse</button>
+        
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            var socket = io.connect("192.168.1.133:8080");
+            
+            function prizgiZ() {
+                socket.emit("ukazArduinu",1); 
+            }
+            
+            function ugasniZ() {
+                socket.emit("ukazArduinu",0); 
+            }
+            
+            function prizgiR() {
+                socket.emit("ukazArduinu",3); 
+            }
+            
+            function ugasniR() {
+                socket.emit("ukazArduinu",2); 
+            }
+            
+            function prizgiM() {
+                socket.emit("ukazArduinu",5); 
+            }
+            
+            function ugasniM() {
+                socket.emit("ukazArduinu",4); 
+            }
+            
+            function prizgiO() {
+                socket.emit("ukazArduinu",7); 
+            }
+            
+            function ugasniO() {
+                socket.emit("ukazArduinu",6); 
+            }
+            
+            function prizgiVse() {
+                socket.emit("ukazArduinu",8); 
+            }
+            function ugasniVse() {
+                socket.emit("ukazArduinu",9); 
+            }
+        </script>
+    </body>
+</html>

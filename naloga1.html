@@ -13,6 +13,8 @@
         <button id = "ugasniM" onClick="ugasniM()">Ugasni Modro</button><br>
         <button id = "prizgiO" onClick="prizgiO()">Prižgi Oranžno</button> 
         <button id = "ugasniO" onClick="ugasniO()">Ugasni Oranžno</button>
+        <button id = "prizgiVse" onClick="prizgiVse()">Prižgi Vse</button>
+        <button id = "ugasniVse" onClick="ugasniVse()">Ugasni Vse</button>
         
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
         <script type="text/javascript">
@@ -48,6 +50,14 @@
             
             function ugasniO() {
                 socket.emit("ukazArduinu",6); 
+            }
+            
+            function prizgiVse() {
+                socket.emit("ukazArduinu",8); 
+            }
+            
+            function ugasniVse() {
+                socket.emit("ukazArduinu",9); 
             }
         </script>
     </body>

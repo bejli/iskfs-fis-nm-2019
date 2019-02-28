@@ -14,7 +14,7 @@ var board = new firmata.Board("/dev/ttyACM0",function() {
 });
 
 function handler(req,res) {
-    fs.readFile(__dirname + "/naloga1.html", function (err,data) {
+    fs.readFile(__dirname + "/naloga2.html", function (err,data) {
         if (err) {
            res.writeHead(500,{"content-type": "text/plain"});
            return res.end("Napaka pri nalaganju strani"); 
