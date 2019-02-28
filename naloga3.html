@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset = "utf-8">
+<html>
+    <style>
+        .green {
+            background-color: green;
+            height: 100px;
+            color: green;
+        }
+        .white {
+            background-color: white;
+            height: 100px;
+            color: white;
+        }
+        .blank {
+            color: white;
+        }
+    </style>
+    <head>
+        <title>Moja spletna stran</title>
+    </head>
+    <body>
+        <div id="gumb" class="blank">DIV</div>
+        
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            var socket = io.connect("192.168.1.133:8080");
+            
+            socket.on("sporočiloKlientu", function (value){
+                if (value == 0) {
+                    console.log(value);
+                    document.getElementById("gumb").className = "white";
+                }
+                if (value == 1) {
+                    console.log(value);
+                    document.getElementById("gumb").className = "green";
+                }
+            });
+        </script>
+    </body>
+</html>
