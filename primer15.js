@@ -17,7 +17,7 @@ var board = new firmata.Board("/dev/ttyACM0", function(){
 });
 
 function handler(req, res) {
-    fs.readFile(__dirname + "/primer14.html",
+    fs.readFile(__dirname + "/primer15.html",
     function(err, data) {
         if (err) {
             res.writeHead(500, {"Content-Type": "text/plain"});
@@ -67,16 +67,29 @@ board.on("ready", function(){
     
 }); // konec board.on("ready")
 
+// Spremenljivke PID algoritma
+var Kp = 0.55; // proporcionalni faktor
+var Ki = 0.008; // integralni faktor
+var Kd = 0.15; // diferencialni faktor
+var pwm = 0;
+
+var err = 0; // error
+var errSum = 0; // vsota napak
+var dErr = 0; // diferenca napak
+var zadnjiErr = 0; // da obdržimo vrednost prejšnje napake
+
 function kontrolniAlgoritem () {
-    pwm = faktor*(želenaVrednost-dejanskaVrednost);
+    err = želenaVrednost - dejanskaVrednost; // odstopanje ali error
+    errSum += err; // vsota napak (kot integral)
+    dErr = err - zadnjiErr; // razlika odstopanj
+    var pwm = Kp*err + Ki*errSum + Kd*dErr; // izraz za PID kontroler (iz enačbe)
+    zadnjiErr = err; // shranimo vrednost za naslednji cikel za oceno odvoda
+
     if (pwm > 255) {pwm = 255}; // omejimo vrednost pwm na 255
     if (pwm < -255) {pwm = -255}; // omejimo vrednost pwm na -255
     if (pwm > 0) {board.digitalWrite(2,0)}; // določimo smer če je > 0
     if (pwm < 0) {board.digitalWrite(2,1)}; // določimo smer če je < 0
     board.analogWrite(3, Math.abs(pwm)); // zapišemo abs vrednost na pin 3
-    if (dejanskaVrednost < 200 || dejanskaVrednost > 850) {
-        stopKontrolniAlgoritem();
-    }
 }
 
 function startKontrolniAlgoritem () {
