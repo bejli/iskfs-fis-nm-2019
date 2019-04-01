@@ -67,7 +67,7 @@ board.digitalRead(2, function(value) { // digitalno branje se dogodi večkrat, o
         }
 
         zadnjaPoslana = zadnjaVrednost;
-    }, 50); // izvedemo po 50ms
+    }, 5000); // izvedemo po 50ms
                 
     zadnjaVrednost = value; // ta vrednost se prebere iz nožice 2 večkrat na s
     
